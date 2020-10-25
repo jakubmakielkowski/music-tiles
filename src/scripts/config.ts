@@ -1,0 +1,8 @@
+const CONFIG = {
+  SCENE_BACKGROUND_COLOR: 0xa09000,
+  TILE_OUTER_LENGTH: 10,
+  SCREEN_SIZE: 8,
+  TILE_LENGTH: 8,
+};
+
+export default CONFIG;
