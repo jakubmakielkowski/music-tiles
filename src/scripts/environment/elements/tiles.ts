@@ -30,6 +30,4 @@ for (let i = 0; i < CONFIG.SCREEN_SIZE; i++) {
   tiles.add(tilesColumn);
 }
 
-console.log(tiles);
-
 export default tiles;
