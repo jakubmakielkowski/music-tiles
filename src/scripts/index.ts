@@ -1,14 +1,18 @@
 import * as THREE from "three";
+import { flatten } from 'lodash';
 
 import CONFIG from "./config.ts";
 import { camera, renderer, scene } from "./environment/scene.ts";
 import screen from "./environment/elements/screen.ts";
 import tiles from "./environment/elements/tiles.ts";
 import { pointCurrentTiles } from "./environment/animation/tiles.ts";
+import { onMouseMove } from "./environment/events/mouse.ts";
+
 
 scene.add(screen);
-scene.add(tiles);
+scene.add(...flatten(tiles));
 
+onMouseMove
 const clock: THREE.Clock = new THREE.Clock();
 clock.start();
 

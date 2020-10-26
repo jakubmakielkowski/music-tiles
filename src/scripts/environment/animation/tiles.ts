@@ -1,4 +1,5 @@
 import * as THREE from "three";
+import { Mesh } from "three";
 
 import CONFIG from "../../config.ts";
 
@@ -12,7 +13,7 @@ const pointedTileMaterial: THREE.MeshBasicMaterial = new THREE.MeshBasicMaterial
   color: CONFIG.POINTED_TILE_COLOR,
 });
 
-const pointCurrentTiles = (tiles: THREE.Group, column: number): void => {
+const pointCurrentTiles = (tiles: Array<Array<Mesh>>, column: number): void => {
   let previousColumn:number = CONFIG.SCREEN_SIZE - 1;
 
   if(column) {
@@ -20,12 +21,12 @@ const pointCurrentTiles = (tiles: THREE.Group, column: number): void => {
   }
   
   // Color current column
-  tiles.children[column].children.forEach((tile: THREE.Mesh) => {
+  tiles[column].forEach((tile: THREE.Mesh) => {
     tile.material = pointedTileMaterial;
   });
 
   // Remove color form previous column
-  tiles.children[previousColumn].children.forEach((tile: THREE.Mesh) => {
+  tiles[previousColumn].forEach((tile: THREE.Mesh) => {
     tile.material = tileMaterial;
   });
 };
