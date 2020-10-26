@@ -1,14 +1,14 @@
 import * as THREE from "three";
 
-import { TILE_OUTER_LENGTH, SCREEN_SIZE } from "../../config.ts";
+import CONFIG from "../../config.ts";
 
 const screenGeometry: THREE.PlaneGeometry = new THREE.PlaneGeometry(
-  SCREEN_SIZE * TILE_OUTER_LENGTH,
-  SCREEN_SIZE * TILE_OUTER_LENGTH
+  CONFIG.SCREEN_SIZE * CONFIG.TILE_OUTER_LENGTH + 2,
+  CONFIG.SCREEN_SIZE * CONFIG.TILE_OUTER_LENGTH + 2
 );
 const screenMaterial: THREE.MeshBasicMaterial = new THREE.MeshBasicMaterial({
   side: THREE.DoubleSide,
-  color: 0x333333,
+  color: CONFIG.SCREEN_COLOR,
 });
 
 const screen: THREE.Mesh = new THREE.Mesh(screenGeometry, screenMaterial);
