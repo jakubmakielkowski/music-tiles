@@ -15,6 +15,8 @@ const tiles: THREE.Group = new THREE.Group();
 const screenBoundary = (-CONFIG.SCREEN_SIZE * CONFIG.TILE_OUTER_LENGTH) / 2;
 
 for (let i = 0; i < CONFIG.SCREEN_SIZE; i++) {
+  const tilesColumn: THREE.Group = new THREE.Group();
+
   for (let j = 0; j < CONFIG.SCREEN_SIZE; j++) {
     const tile = tilePrototype.clone();
     tile.position.set(
@@ -22,8 +24,10 @@ for (let i = 0; i < CONFIG.SCREEN_SIZE; i++) {
       screenBoundary + j * CONFIG.TILE_OUTER_LENGTH + CONFIG.TILE_OUTER_LENGTH / 2,
       0.01
     );
-    tiles.add(tile);
+    tilesColumn.add(tile);
   }
+
+  tiles.add(tilesColumn);
 }
 
 console.log(tiles);
