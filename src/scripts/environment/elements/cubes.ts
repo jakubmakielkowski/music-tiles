@@ -1,33 +1,16 @@
-import * as THREE from "three";
-import { Mesh } from "three";
+import CONFIG from "../../config";
+import Cube from "./classes/Cube";
 
-import CONFIG from "../../config.ts";
+type CubesGrid = Array<Array<Cube>>;
+const cubes: CubesGrid = new Array();
 
-const tileGeometry: THREE.PlaneGeometry = new THREE.PlaneGeometry(CONFIG.TILE_LENGTH, CONFIG.TILE_LENGTH);
-const tileMaterial: THREE.MeshBasicMaterial = new THREE.MeshBasicMaterial({
-  side: THREE.DoubleSide,
-  color: CONFIG.TILE_COLOR,
-});
-
-const tiles:Array<Mesh[]> = new Array();
-
-const screenBoundary = (-CONFIG.SCREEN_SIZE * CONFIG.TILE_OUTER_LENGTH) / 2;
-
-for (let i = 0; i < CONFIG.SCREEN_SIZE; i++) {
-  const tilesColumn: Array<Mesh> = new Array();
-
-  for (let j = 0; j < CONFIG.SCREEN_SIZE; j++) {
-    const tile: THREE.Mesh = new THREE.Mesh(tileGeometry, tileMaterial);
-    tile.name = `tile`;
-    tile.position.set(
-      screenBoundary + i * CONFIG.TILE_OUTER_LENGTH + CONFIG.TILE_OUTER_LENGTH / 2,
-      screenBoundary + j * CONFIG.TILE_OUTER_LENGTH + CONFIG.TILE_OUTER_LENGTH / 2,
-      0.01
-    );
-    tilesColumn.push(tile);
+const initCubesArray = () => {
+  for (let i = 0; i < CONFIG.SCREEN_SIZE; i++) {
+    cubes[i] = new Array();
   }
+};
 
-  tiles.push(tilesColumn);
-}
+initCubesArray();
 
-export default tiles;
+export default cubes;
+export { CubesGrid };

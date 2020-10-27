@@ -1,31 +1,23 @@
 import * as THREE from "three";
 import { Mesh } from "three";
 
-import CONFIG from "../../config.ts";
+import CONFIG from "../../config";
 
-const tileMaterial: THREE.MeshBasicMaterial = new THREE.MeshBasicMaterial({
-  side: THREE.DoubleSide,
-  color: CONFIG.TILE_COLOR,
-});
-
-const pointedTileMaterial: THREE.MeshBasicMaterial = new THREE.MeshBasicMaterial({
-  side: THREE.DoubleSide,
-  color: CONFIG.POINTED_TILE_COLOR,
-});
+import { tileMaterial, pointedTileMaterial } from "../elements/classes/Tile";
 
 const pointCurrentTiles = (tiles: Array<Array<Mesh>>, column: number): void => {
-  let previousColumn:number = CONFIG.SCREEN_SIZE - 1;
+  let previousColumn: number = CONFIG.SCREEN_SIZE - 1;
 
-  if(column) {
+  if (column) {
     previousColumn = column - 1;
   }
-  
-  // Color current column
+
+  // Add color to current column
   tiles[column].forEach((tile: THREE.Mesh) => {
     tile.material = pointedTileMaterial;
   });
 
-  // Remove color form previous column
+  // Remove color from previous column
   tiles[previousColumn].forEach((tile: THREE.Mesh) => {
     tile.material = tileMaterial;
   });
