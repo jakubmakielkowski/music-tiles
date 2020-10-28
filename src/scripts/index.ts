@@ -4,9 +4,8 @@ import { renderer, scene } from "./environment/scene";
 import tiles, { generateTiles } from "./environment/elements/tiles";
 import screen from "./environment/elements/screen";
 import loop from "./environment/animation/loop";
-import { onMouseMove } from "./environment/events/mouse";
+import "./environment/events/mouse";
 
-onMouseMove;
 // Create tiles grid
 generateTiles();
 

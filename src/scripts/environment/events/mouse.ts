@@ -84,15 +84,27 @@ const handleTileClick = (intersect: THREE.Intersection):void => {
   }
 }
 
+// Cube, when processing promise is not clickable
+let isCubeLocked:boolean = false;
+
 const handleCubeClick = (intersect: THREE.Intersection):void => {
   const intersectedCube: Cube = findIntersectedShape(cubes, intersect);
 
   const { x, y } = intersectedCube;
 
   // If cube is present remove it
-  if(intersectedCube) {
-    cubes[y][x] = null;
-    scene.remove(intersectedCube);
+  if(intersectedCube && !isCubeLocked) {
+    isCubeLocked = true;
+
+    // Hide cube and then remove it
+    new Promise((res) => {
+      intersectedCube.hide();
+      setTimeout(res, CONFIG.CUBE_ANIMATION_LENGTH * 1000);
+    }).then(() => {
+      cubes[y][x] = null;
+      scene.remove(intersectedCube);
+      isCubeLocked = false;
+    })
   }
 }
 
@@ -114,5 +126,3 @@ const onMouseClick = (event: MouseEvent): void => {
 
 window.addEventListener("mousemove", onMouseMove, false);
 window.addEventListener("click", onMouseClick, false);
-
-export { onMouseMove };

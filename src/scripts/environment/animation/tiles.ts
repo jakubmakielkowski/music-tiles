@@ -1,11 +1,11 @@
 import * as THREE from "three";
-import { Mesh } from "three";
 
 import CONFIG from "../../config";
 
+import { TilesGrid } from "../elements/tiles";
 import { tileMaterial, pointedTileMaterial } from "../elements/classes/Tile";
 
-const pointCurrentTiles = (tiles: Array<Array<Mesh>>, column: number): void => {
+const pointCurrentTiles = (tiles: TilesGrid, column: number): void => {
   let previousColumn: number = CONFIG.SCREEN_SIZE - 1;
 
   if (column) {
