@@ -43,8 +43,9 @@ class Cube extends THREE.Mesh {
   private positionMesh(y: number, x: number) {
     // Align mesh position to screen grid
     const screenBoundary = (-CONFIG.SCREEN_SIZE * CONFIG.TILE_OUTER_LENGTH) / 2;
-    this.position.setY(screenBoundary + y * CONFIG.TILE_OUTER_LENGTH + CONFIG.TILE_OUTER_LENGTH / 2);
     this.position.setX(screenBoundary + x * CONFIG.TILE_OUTER_LENGTH + CONFIG.TILE_OUTER_LENGTH / 2);
+    this.position.setY(screenBoundary + y * CONFIG.TILE_OUTER_LENGTH + CONFIG.TILE_OUTER_LENGTH / 2);
+    this.position.setZ(CONFIG.CUBE_HEIGHT / 2);
   }
 
   private prepareAnimationControls() {
