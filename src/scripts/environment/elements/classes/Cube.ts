@@ -13,7 +13,7 @@ const cubeMaterial: THREE.MeshPhongMaterial = new THREE.MeshPhongMaterial({
 });
 
 const pointedCubeMaterial: THREE.MeshPhongMaterial = new THREE.MeshPhongMaterial({
-  color: CONFIG.POINTED_TILE_COLOR,
+  color: CONFIG.POINTED_CUBE_COLOR,
 });
 
 class Cube extends THREE.Mesh {
@@ -34,11 +34,11 @@ class Cube extends THREE.Mesh {
   readonly type: string;
   readonly y: number;
   readonly x: number;
-  readonly mixer: THREE.AnimationMixer;
-  readonly clipShow: THREE.AnimationClip;
-  readonly clipHide: THREE.AnimationClip;
-  readonly animationShow: THREE.AnimationAction;
-  readonly animationHide: THREE.AnimationAction;
+  mixer: THREE.AnimationMixer;
+  clipShow: THREE.AnimationClip;
+  clipHide: THREE.AnimationClip;
+  animationShow: THREE.AnimationAction;
+  animationHide: THREE.AnimationAction;
 
   private positionMesh(y: number, x: number) {
     // Align mesh position to screen grid

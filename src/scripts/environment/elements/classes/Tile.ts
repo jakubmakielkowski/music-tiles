@@ -5,7 +5,7 @@ import CONFIG from "../../../config";
 const tileGeometry: THREE.PlaneGeometry = new THREE.PlaneGeometry(CONFIG.TILE_LENGTH, CONFIG.TILE_LENGTH);
 
 const tileMaterial: THREE.MeshPhongMaterial = new THREE.MeshPhongMaterial({
-  color: CONFIG.TILE_COLOR,
+  color: CONFIG.TILE_COLOR
 });
 
 const pointedTileMaterial: THREE.MeshPhongMaterial = new THREE.MeshPhongMaterial({
