@@ -12,10 +12,14 @@ import Cube from "../elements/classes/Cube";
 const clock: THREE.Clock = new THREE.Clock();
 clock.start();
 
-let step = 0;
-let currentSequence: number = Number(clock.getElapsedTime().toFixed(0));
+const getElapsedTime = (tempo: number) => {
+  const date:Date = new Date()
+  return  Number(date.getTime() / 60 / 1000 * tempo).toFixed(0);
+}
 
-// TODO: other timestamps than seconds
+let step:number = 0;
+let currentSequence: number = getElapsedTime(CONFIG.TEMPO);
+
 const updateSequence = (): void => {
   pointCurrentTiles(tiles, step % CONFIG.SCREEN_SIZE);
   pointCurrentCubes(cubes, step % CONFIG.SCREEN_SIZE);
@@ -27,7 +31,8 @@ const loop = (): void => {
   const delta: number = clock.getDelta();
 
   requestAnimationFrame(loop);
-  if (Number(clock.getElapsedTime().toFixed(0)) > currentSequence) {
+
+  if (getElapsedTime(CONFIG.TEMPO) > currentSequence) {
     updateSequence();
   }
 

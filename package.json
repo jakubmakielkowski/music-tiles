@@ -24,6 +24,7 @@
   "dependencies": {
     "@types/lodash": "^4.14.162",
     "lodash": "^4.17.20",
-    "three": "^0.116.1"
+    "three": "^0.116.1",
+    "tone": "^14.7.58"
   }
 }

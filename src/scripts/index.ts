@@ -8,6 +8,7 @@ import panelLeft from "./environment/elements/ui/panel/panelLeft";
 import panelControls from "./environment/elements/ui/panel/panelControls";
 import loop from "./environment/animation/loop";
 import "./environment/events/mouse";
+import "./environment/sound/index";
 
 // Create tiles grid
 generateTiles();

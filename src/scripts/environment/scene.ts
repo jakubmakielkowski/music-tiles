@@ -16,7 +16,7 @@ scene.add(light);
 
 const camera = new THREE.PerspectiveCamera(25, aspectRatio, 1, 1000);
 camera.position.setX(100);
-camera.position.setZ(300);
+camera.position.setZ(400);
 camera.lookAt(20, 0, 0);
 camera.rotateZ(Math.PI / 2);
 
