@@ -3,7 +3,7 @@ import * as THREE from "three";
 import CONFIG from "../../config";
 
 import { CubesGrid } from "../elements/cubes";
-import { cubeMaterial, pointedCubeMaterial } from "../elements/classes/Cube";
+import Cube, { cubeMaterial, pointedCubeMaterial } from "../elements/classes/Cube";
 
 import { synth, sounds } from "../sound/index"
 
@@ -14,10 +14,10 @@ const pointCurrentCubes = (cubes: CubesGrid, column: number): void => {
     previousColumn = column - 1;
   }
 
-  const cubesIndexes:Array<number> = new Array<number>;
+  const cubesIndexes:Array<number> = new Array();
  
   // Add color to current column
-  cubes[column].forEach((cube: THREE.Mesh, i:number) => {
+  cubes[column].forEach((cube: Cube, i:number) => {
     if (cube) {
       cube.material = pointedCubeMaterial;
 
@@ -31,7 +31,7 @@ const pointCurrentCubes = (cubes: CubesGrid, column: number): void => {
   synth.triggerAttackRelease(sounds.filter((el, i) => cubesIndexes.includes(i)), "8n")
 
   // Remove color from previous column
-  cubes[previousColumn].forEach((cube: THREE.Mesh) => {
+  cubes[previousColumn].forEach((cube: Cube) => {
     if (cube) {
       cube.material = cubeMaterial;
     }

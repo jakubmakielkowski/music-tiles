@@ -9,15 +9,14 @@ import { pointCurrentTiles } from "./tiles";
 import { pointCurrentCubes } from "./cubes";
 import Cube from "../elements/classes/Cube";
 
-const clock: THREE.Clock = new THREE.Clock();
-clock.start();
+const clock: THREE.Clock = new THREE.Clock(true);
 
-const getElapsedTime = (tempo: number) => {
-  const date:Date = new Date()
-  return  Number(date.getTime() / 60 / 1000 * tempo).toFixed(0);
-}
+const getElapsedTime = (tempo: number): number => {
+  const elapsedTime: number = (clock.getElapsedTime() / 60) * tempo;
+  return parseInt(String(elapsedTime));
+};
 
-let step:number = 0;
+let step: number = 0;
 let currentSequence: number = getElapsedTime(CONFIG.TEMPO);
 
 const updateSequence = (): void => {
@@ -27,20 +26,35 @@ const updateSequence = (): void => {
   currentSequence++;
 };
 
+let isBrowserTabActive: boolean = true;
+
+const handleVisibilityChange = () => {
+  if (document.hidden) {
+    clock.stop();
+    currentSequence = 0;
+  } else {
+    clock.start();
+  }
+};
+
+document.addEventListener("visibilitychange", handleVisibilityChange, false);
+
 const loop = (): void => {
   const delta: number = clock.getDelta();
 
   requestAnimationFrame(loop);
 
-  if (getElapsedTime(CONFIG.TEMPO) > currentSequence) {
-    updateSequence();
+  if (isBrowserTabActive) {
+    if (getElapsedTime(CONFIG.TEMPO) > currentSequence) {
+      updateSequence();
+    }
+
+    _.flatten(cubes).forEach((cube: Cube) => {
+      cube && cube.mixer.update(delta);
+    });
+
+    renderer.render(scene, camera);
   }
-
-  _.flatten(cubes).forEach((cube: Cube) => {
-    cube && cube.mixer.update(delta);
-  });
-
-  renderer.render(scene, camera);
 };
 
 export default loop;
