@@ -5,9 +5,11 @@ import CONFIG from "../../config";
 import { camera, renderer, scene } from "../scene";
 import tiles from "../elements/tiles";
 import cubes from "../elements/cubes";
+import buttons from "../elements/buttons";
 import { pointCurrentTiles } from "./tiles";
 import { pointCurrentCubes } from "./cubes";
 import Cube from "../elements/classes/Cube";
+import Button from "../elements/classes/Button";
 
 const clock: THREE.Clock = new THREE.Clock(true);
 
@@ -28,12 +30,26 @@ const updateSequence = (): void => {
 
 let isBrowserTabActive: boolean = true;
 
-const handleVisibilityChange = () => {
-  if (document.hidden) {
+const stopSequence = (): void => {
+  if(clock.running){
     clock.stop();
     currentSequence = 0;
-  } else {
+    isBrowserTabActive = false;
+  }
+};
+
+const startSequence = ():void => {
+  if(!clock.running){
     clock.start();
+    isBrowserTabActive = true;
+  }
+}
+
+const handleVisibilityChange = () => {
+  if (document.hidden) {
+    stopSequence();
+  } else {
+    startSequence();
   }
 };
 
@@ -53,8 +69,13 @@ const loop = (): void => {
       cube && cube.mixer.update(delta);
     });
 
+    buttons.forEach((button: Button) => {
+      button.mixer.update(delta);
+    });
+
     renderer.render(scene, camera);
   }
 };
 
 export default loop;
+export { startSequence, stopSequence };

@@ -5,9 +5,12 @@ import CONFIG from "../../config";
 import { camera, scene } from "../scene";
 
 import Tile, { hoveredTileMaterial } from "../elements/classes/Tile";
+import Cube from "../elements/classes/Cube";
+import Button from "../elements/classes/Button";
 import tiles, { TilesGrid } from "../elements/tiles";
 import cubes, { CubesGrid } from "../elements/cubes";
-import Cube from "../elements/classes/Cube";
+import buttons from "../elements/buttons";
+import { startSequence, stopSequence } from "../animation/loop";
 
 const raycaster: THREE.Raycaster = new THREE.Raycaster();
 const mouse: THREE.Vector2 = new THREE.Vector2();
@@ -106,6 +109,22 @@ const handleCubeClick = (intersect: THREE.Intersection): void => {
   }
 };
 
+const handleButtonClick = (intersect: THREE.Intersection): void => {
+  const object: THREE.Object3D = intersect.object;
+  const button: Button = buttons.find((button: Button) => button.name === object.name);
+
+  const clickAudio: HTMLAudioElement = new Audio("../../../assets/sounds/click.mp3");
+  clickAudio.play();
+
+  button.animate();
+
+  if(button.name === "stopButton") {
+    stopSequence();
+  } else if(button.name === "playButton") {
+    startSequence();
+  }
+};
+
 const onMouseClick = (event: MouseEvent): void => {
   const cubeIntersects: THREE.Intersection[] = getIntersect(event, "cube");
   if (cubeIntersects.length) {
@@ -118,6 +137,13 @@ const onMouseClick = (event: MouseEvent): void => {
   if (tileIntersects.length) {
     const [tileIntersect] = tileIntersects;
     handleTileClick(tileIntersect);
+    return;
+  }
+
+  const buttonIntersects: THREE.Intersection[] = getIntersect(event, "button");
+  if (buttonIntersects.length) {
+    const [buttonIntersect] = buttonIntersects;
+    handleButtonClick(buttonIntersect);
     return;
   }
 };
