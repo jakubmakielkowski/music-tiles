@@ -1,6 +1,6 @@
 import * as Tone from "tone";
 
-import CONFIG from "../../config";
+import CONFIG from "scripts/config";
 
 const synth: Tone.PolySynth = new Tone.PolySynth(Tone.Synth, {
   oscillator: {
@@ -11,9 +11,9 @@ const synth: Tone.PolySynth = new Tone.PolySynth(Tone.Synth, {
 const sounds:Array<string> = [];
 const notes:Array<string> = ["C", "D", "E", "G", "A"];
 
-for (let i = 0; i < CONFIG.SCREEN_SIZE; i++) {
+for (let i = 0; i < CONFIG.SCREEN_WIDTH; i++) {
   const currentNote = notes[i% notes.length];
-  const currentOctave = Math.floor(i / notes.length) + 4;
+  const currentOctave = Math.floor(i / notes.length) + 3;
   sounds.push(`${currentNote}${currentOctave}`);
 }
 

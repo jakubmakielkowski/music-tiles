@@ -1,16 +1,18 @@
 import * as THREE from "three";
 import * as _ from "lodash";
 
-import CONFIG from "../../config";
-import { camera, scene } from "../scene";
+import CONFIG from "scripts/config";
+import { camera, scene } from "scripts/scene";
 
-import Tile, { hoveredTileMaterial } from "../elements/classes/Tile";
-import Cube from "../elements/classes/Cube";
-import Button from "../elements/classes/Button";
-import tiles, { TilesGrid } from "../elements/tiles";
-import cubes, { CubesGrid } from "../elements/cubes";
-import buttons from "../elements/buttons";
-import { startSequence, stopSequence } from "../animation/loop";
+import Tile from "scripts/elements/shapes/tile/Tile";
+import { hoveredTileMaterial } from "scripts/elements/shapes/tile/mesh";
+import Grid from "scripts/elements/iterable/Grid";
+import Cube from "scripts/elements/shapes/cube/Cube";
+import Button from "scripts/elements/shapes/button/Button";
+import tiles from "scripts/elements/iterable/tiles";
+import cubes from "scripts/elements/iterable/cubes";
+import buttons from "scripts/elements/iterable/buttons";
+import { startSequence, stopSequence } from "scripts/animation/loop";
 
 const raycaster: THREE.Raycaster = new THREE.Raycaster();
 const mouse: THREE.Vector2 = new THREE.Vector2();
@@ -29,14 +31,14 @@ const getIntersect = (event: MouseEvent, objectType: string): THREE.Intersection
   return intersects;
 };
 
-type Shape = Tile | Cube;
-type ShapesGrid = TilesGrid | CubesGrid;
+// TODO: dedicated class for tile or cube
+type GridShape = Cube | Tile;
 
-const findIntersectedShape = (shapes: ShapesGrid, intersect: THREE.Intersection): Shape => {
+const findIntersectedShape = (shapes: Grid<GridShape>, intersect: THREE.Intersection): GridShape => {
   const { x, y } = intersect.object.position;
-  const flattenedShapes: Array<Shape> = _.flatten(shapes);
+  const flattenedShapes: Array<GridShape> = shapes.toArray();
 
-  const intersectedShape: Shape = flattenedShapes.find((mesh: THREE.Mesh): boolean => {
+  const intersectedShape: GridShape = flattenedShapes.find((mesh: THREE.Mesh): boolean => {
     return mesh?.position.x === x && mesh?.position.y === y;
   });
 
@@ -52,7 +54,7 @@ const handleTileHover = (intersect: THREE.Intersection): void => {
 
   if (intersect) {
     // Add second tile above pointed one to create 'hover' effect
-    const intersectedTile: Tile = findIntersectedShape(tiles, intersect);
+    const intersectedTile: GridShape = findIntersectedShape(tiles, intersect);
 
     const { x, y } = intersectedTile;
 
@@ -76,11 +78,12 @@ const handleTileClick = (intersect: THREE.Intersection): void => {
 
   const { x, y } = intersectedTile;
 
-  const cube: Cube = cubes[y][x];
+  const cube: Cube = cubes.get(y,x) ;
 
   // If tile is empty add cube. Cube removal is handled in handleCubeClick
   if (!cube) {
-    const cube: Cube = (cubes[y][x] = new Cube(y, x));
+    const cube = new Cube(y,x);
+    cubes.push(y,x,cube);
     scene.add(cube);
   }
 };
@@ -102,7 +105,7 @@ const handleCubeClick = (intersect: THREE.Intersection): void => {
       intersectedCube.hide();
       setTimeout(res, CONFIG.CUBE_ANIMATION_LENGTH * 1000);
     }).then(() => {
-      cubes[y][x] = null;
+      cubes.push(y,x,null);
       scene.remove(intersectedCube);
       isCubeLocked = false;
     });
@@ -113,7 +116,7 @@ const handleButtonClick = (intersect: THREE.Intersection): void => {
   const object: THREE.Object3D = intersect.object;
   const button: Button = buttons.find((button: Button) => button.name === object.name);
 
-  const clickAudio: HTMLAudioElement = new Audio("../../../assets/sounds/click.mp3");
+  const clickAudio: HTMLAudioElement = new Audio("assets/sounds/click.mp3");
   clickAudio.play();
 
   button.animate();

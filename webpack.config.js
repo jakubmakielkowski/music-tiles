@@ -19,6 +19,10 @@ module.exports = {
   ],
   resolve: {
     extensions: [".ts", ".js"],
+    alias: {
+      assets: path.resolve(__dirname, 'src/assets/'),
+      scripts: path.resolve(__dirname, 'src/scripts/'),
+    }
   },
   module: {
     rules: [
