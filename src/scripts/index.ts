@@ -8,6 +8,7 @@ import stopButton from "./elements/ui/controls/stopButton";
 import loop from "./animation/loop";
 import "./events/mouse";
 import "./sound/index";
+import "./routing/index";
 
 // Create tiles grid
 generateTiles();

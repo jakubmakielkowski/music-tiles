@@ -13,6 +13,7 @@ import tiles from "scripts/elements/iterable/tiles";
 import cubes from "scripts/elements/iterable/cubes";
 import buttons from "scripts/elements/iterable/buttons";
 import { startSequence, stopSequence } from "scripts/animation/loop";
+import { encodeCubesToUrl } from "scripts/routing/helpers/cubes";
 
 const raycaster: THREE.Raycaster = new THREE.Raycaster();
 const mouse: THREE.Vector2 = new THREE.Vector2();
@@ -85,6 +86,7 @@ const handleTileClick = (intersect: THREE.Intersection): void => {
     const cube = new Cube(y,x);
     cubes.push(y,x,cube);
     scene.add(cube);
+    encodeCubesToUrl(cubes);
   }
 };
 
@@ -108,6 +110,7 @@ const handleCubeClick = (intersect: THREE.Intersection): void => {
       cubes.push(y,x,null);
       scene.remove(intersectedCube);
       isCubeLocked = false;
+      encodeCubesToUrl(cubes);
     });
   }
 };

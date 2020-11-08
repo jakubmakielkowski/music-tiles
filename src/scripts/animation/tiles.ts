@@ -14,7 +14,7 @@ const pointCurrentTiles = (tiles: Grid<Tile>, column: number): void => {
   }
 
   const tls:Array<Array<Tile>> = tiles.to2Array();
-  console.log(tls,1)
+
   // Add color to current column
   tls[column].forEach((tile: THREE.Mesh) => {
     tile.material = pointedTileMaterial;
