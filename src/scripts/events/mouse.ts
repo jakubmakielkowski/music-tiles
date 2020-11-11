@@ -14,6 +14,8 @@ import cubes from "scripts/elements/iterable/cubes";
 import buttons from "scripts/elements/iterable/buttons";
 import { startSequence, stopSequence } from "scripts/animation/loop";
 import { encodeCubesToUrl } from "scripts/routing/helpers/cubes";
+import { clickAudio } from "scripts/sound/effects";
+import { clearUrlSeed } from "scripts/routing/index";
 
 const raycaster: THREE.Raycaster = new THREE.Raycaster();
 const mouse: THREE.Vector2 = new THREE.Vector2();
@@ -79,12 +81,12 @@ const handleTileClick = (intersect: THREE.Intersection): void => {
 
   const { x, y } = intersectedTile;
 
-  const cube: Cube = cubes.get(y,x) ;
+  const cube: Cube = cubes.get(y, x);
 
   // If tile is empty add cube. Cube removal is handled in handleCubeClick
   if (!cube) {
-    const cube = new Cube(y,x);
-    cubes.push(y,x,cube);
+    const cube = new Cube(y, x);
+    cubes.push(y, x, cube);
     scene.add(cube);
     encodeCubesToUrl(cubes);
   }
@@ -107,7 +109,7 @@ const handleCubeClick = (intersect: THREE.Intersection): void => {
       intersectedCube.hide();
       setTimeout(res, CONFIG.CUBE_ANIMATION_LENGTH * 1000);
     }).then(() => {
-      cubes.push(y,x,null);
+      cubes.push(y, x, null);
       scene.remove(intersectedCube);
       isCubeLocked = false;
       encodeCubesToUrl(cubes);
@@ -119,15 +121,34 @@ const handleButtonClick = (intersect: THREE.Intersection): void => {
   const object: THREE.Object3D = intersect.object;
   const button: Button = buttons.find((button: Button) => button.name === object.name);
 
-  const clickAudio: HTMLAudioElement = new Audio("assets/sounds/click.mp3");
+  clickAudio.load();
   clickAudio.play();
 
   button.animate();
 
-  if(button.name === "stopButton") {
+  if (button.name === "stopButton") {
     stopSequence();
-  } else if(button.name === "playButton") {
+  } else if (button.name === "playButton") {
     startSequence();
+  } else if (button.name === "clearButton") {
+    clearUrlSeed();
+
+    const cbs: Array<Cube> = cubes.toArray().filter(Boolean);
+
+    new Promise((res) => {
+              
+      cbs.map((cube: Cube) => cube.hide());
+      setTimeout(res, CONFIG.CUBE_ANIMATION_LENGTH * 1000);
+    }).then(() => {
+      cbs.forEach((cube: Cube) => {
+        const { x, y } = cube;
+
+        cubes.push(y, x, null);
+        scene.remove(cube);
+      });
+    });
+
+    cubes.clear();
   }
 };
 

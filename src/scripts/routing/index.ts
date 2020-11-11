@@ -42,16 +42,23 @@ const changeUrlSeed = (seed: string): void => {
   history.pushState({}, null, newURL);
 };
 
+// Clear querystring
+const clearUrlSeed = (): void => {
+  const { origin } = window.location;
+  const newURL: string = `${origin}`;
+  history.pushState({}, null, newURL);
+};
+
 // Generate cubes based on query string param
 window.addEventListener("load", (): void => {
   const { search } = window.location;
 
   const params: URLSearchParams = new URLSearchParams(search);
   const param = params.get(CONFIG.URL_SEED_PARAM_NAME);
-  console.log(param);
+  
   if (param) {
     decodeUrlParams(param);
   }
 });
 
-export { changeUrlSeed };
+export { changeUrlSeed, clearUrlSeed };
