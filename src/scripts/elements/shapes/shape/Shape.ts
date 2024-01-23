@@ -1,7 +1,7 @@
 import * as THREE from "three";
 
 abstract class Shape extends THREE.Mesh {
-    constructor(geometry: THREE.Geometry, material: THREE.Material) {
+    constructor(geometry: THREE.ShapeGeometry | THREE.BoxGeometry | THREE.PlaneGeometry, material: THREE.Material) {
         super(geometry, material);
     }
 

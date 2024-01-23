@@ -1,5 +1,7 @@
 import * as THREE from "three";
-
+import { FontLoader } from 'three/examples/jsm/loaders/FontLoader.js';
+import { TextGeometry } from 'three/examples/jsm/geometries/TextGeometry.js';
+import { Font } from 'three/examples/jsm/loaders/FontLoader.js';
 import CONFIG from "scripts/config";
 import Shape from "scripts/elements/shapes/shape/Shape";
 import { buttonGeometry } from "./mesh";
@@ -37,10 +39,10 @@ class Button extends Shape {
   public readonly mixer: THREE.AnimationMixer;
 
   private addText(text: string) {
-    const loader = new THREE.FontLoader();
+    const loader = new FontLoader();
 
-    loader.load("assets/fonts/Open_Sans_Bold.json", (loadedFont: THREE.Font) => {
-      const textGeometry: THREE.TextGeometry = getTextGeometry(loadedFont, text);
+    loader.load("assets/fonts/Open_Sans_Bold.json", (loadedFont: Font) => {
+      const textGeometry: TextGeometry = getTextGeometry(loadedFont, text);
 
       const textMesh: THREE.Mesh = new THREE.Mesh(textGeometry, textMaterial);
 

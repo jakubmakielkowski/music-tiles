@@ -1,7 +1,9 @@
 import * as THREE from "three";
+import { TextGeometry } from 'three/examples/jsm/geometries/TextGeometry.js';
+import { Font } from 'three/examples/jsm/loaders/FontLoader.js';
 
-const getTextGeometry = (font: THREE.Font, text: string): THREE.TextGeometry => {
-  return new THREE.TextGeometry(text, {
+const getTextGeometry = (font: Font, text: string): TextGeometry => {
+  return new TextGeometry(text, {
     font: font,
     size: 4,
     height: 0,
