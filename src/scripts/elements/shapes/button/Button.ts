@@ -16,7 +16,7 @@ class Button extends Shape {
 
     super(buttonGeometry, buttonMaterial);
 
-    this.type = "button";
+    this.tempType = "button";
     this.name = name;
     this.position.set(x, y, CONFIG.CUBE_HEIGHT / 2);
     

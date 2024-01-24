@@ -27,7 +27,7 @@ const getIntersect = (event: MouseEvent, objectType: string): THREE.Intersection
   raycaster.setFromCamera(mouse, camera);
 
   const intersects: THREE.Intersection[] = raycaster.intersectObjects(
-    scene.children.filter((el: THREE.Mesh) => el.type === objectType),
+    scene.children.filter((el: any) => el.tempType === objectType),
     true
   );
 

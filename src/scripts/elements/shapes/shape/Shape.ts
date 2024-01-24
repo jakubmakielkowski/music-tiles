@@ -5,7 +5,7 @@ abstract class Shape extends THREE.Mesh {
         super(geometry, material);
     }
 
-    public type: string;
+    public tempType: string;
 }
 
 export default Shape;

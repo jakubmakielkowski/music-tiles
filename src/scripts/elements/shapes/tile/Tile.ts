@@ -6,7 +6,7 @@ class Tile extends Shape {
   constructor(y: number, x: number) {
     super(tileGeometry, tileMaterial);
 
-    this.type = "tile";
+    this.tempType = "tile";
     this.y = y;
     this.x = x;
 
@@ -14,7 +14,6 @@ class Tile extends Shape {
     this.position.set(gridX, gridY, 0.1);
   }
 
-  public readonly type: string;
   public readonly y: number;
   public readonly x: number;
 }

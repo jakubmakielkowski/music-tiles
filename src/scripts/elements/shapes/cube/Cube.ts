@@ -9,7 +9,7 @@ class Cube extends Shape {
   constructor(y: number, x: number) {
     super(cubeGeometry, cubeMaterial);
 
-    this.type = "cube";
+    this.tempType = "cube";
     this.y = y;
     this.x = x;
 
@@ -61,7 +61,6 @@ class Cube extends Shape {
     this.show();
   }
 
-  public readonly type: string;
   public readonly y: number;
   public readonly x: number;
   public readonly mixer: THREE.AnimationMixer;
