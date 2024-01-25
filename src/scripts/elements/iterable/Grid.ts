@@ -1,6 +1,6 @@
 import * as _ from "lodash";
 
-class Grid<T> {
+export class Grid<T> {
   constructor(height: number, width: number) {
     this.height = height;
     this.width = width;
@@ -39,5 +39,3 @@ class Grid<T> {
     return this.values;
   }
 }
-
-export default Grid;

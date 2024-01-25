@@ -1,6 +1,6 @@
-import Grid from "scripts/elements/iterable/Grid";
+import { Grid } from "scripts/elements/iterable/Grid";
 import Cube from "scripts/elements/shapes/cube/Cube";
-import cubes from "scripts/elements/iterable/cubes";
+import { cubes } from "scripts/elements/iterable/cubes";
 import { scene } from "scripts/scene";
 import { pairs } from "./compression";
 import { changeUrlSeed } from "scripts/routing";

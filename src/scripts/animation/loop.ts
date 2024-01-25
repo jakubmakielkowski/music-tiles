@@ -2,9 +2,9 @@ import * as THREE from "three";
 
 import CONFIG from "scripts/config";
 import { camera, renderer, scene } from "scripts/scene";
-import tiles from "scripts/elements/iterable/tiles";
-import cubes from "scripts/elements/iterable/cubes";
-import buttons from "scripts/elements/iterable/buttons";
+import { tiles } from "scripts/elements/iterable/tiles";
+import { cubes } from "scripts/elements/iterable/cubes";
+import { buttons } from "scripts/elements/iterable/buttons";
 import { pointCurrentTiles } from "./tiles";
 import { pointCurrentCubes } from "./cubes";
 import Cube from "scripts/elements/shapes/cube/Cube";

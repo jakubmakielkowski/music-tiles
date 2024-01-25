@@ -1,5 +1,5 @@
 import { renderer, scene } from "./scene";
-import tiles, { generateTiles } from "./elements/iterable/tiles";
+import { tiles, generateTiles } from "./elements/iterable/tiles";
 import screen from "./elements/screen";
 import panelControls from "./elements/ui/panel/panelControls";
 import playButton from "./elements/ui/controls/playButton";

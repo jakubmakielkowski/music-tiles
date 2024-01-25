@@ -2,7 +2,7 @@ import * as THREE from "three";
 
 import CONFIG from "scripts/config";
 
-import Grid from "scripts/elements/iterable/Grid";
+import { Grid } from "scripts/elements/iterable/Grid";
 import Tile from "scripts/elements/shapes/tile/Tile";
 import { tileMaterial, pointedTileMaterial } from "scripts/elements/shapes/tile/mesh";
 

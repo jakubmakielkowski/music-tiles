@@ -1,6 +1,6 @@
 import CONFIG from "scripts/config";
 
-import Grid from "scripts/elements/iterable/Grid";
+import { Grid } from "scripts/elements/iterable/Grid";
 import Cube, { cubeMaterial, pointedCubeMaterial } from "scripts//elements/shapes/cube/Cube";
 import { synth, sounds } from "scripts/sound/index";
 
