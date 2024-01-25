@@ -1,5 +1,5 @@
 import Shape from "scripts/elements/shapes/shape/Shape";
-import { tileGeometry, tileMaterial } from "./mesh";
+import { tileGeometry, tileMaterial } from "./Tile.mesh";
 import { getGridPosition } from "scripts/elements/shapes/shape/helpers/grid";
 
 class Tile extends Shape {
