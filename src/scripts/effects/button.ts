@@ -1,9 +1,9 @@
 import { stopSequence, startSequence } from "scripts/animation/loop";
-import CONFIG from "scripts/config";
-import { buttons } from "scripts/elements/iterable/buttons";
-import { cubes } from "scripts/elements/iterable/cubes";
-import Button from "scripts/elements/shapes/button/Button";
-import Cube from "scripts/elements/shapes/cube/Cube";
+import { CONFIG } from "scripts/config";
+import { buttons } from "scripts/ui-elements/controls/buttons";
+import { cubes } from "scripts/ui-elements/interactive/cubes";
+import Button from "scripts/classes/button/Button";
+import Cube from "scripts/classes/cube/Cube";
 import { clearUrlSeed } from "scripts/routing";
 import { scene } from "scripts/scene";
 import { clickAudio } from "scripts/sound/effects";

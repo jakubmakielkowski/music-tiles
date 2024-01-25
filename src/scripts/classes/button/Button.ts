@@ -2,10 +2,10 @@ import * as THREE from "three";
 import { FontLoader } from 'three/examples/jsm/loaders/FontLoader.js';
 import { TextGeometry } from 'three/examples/jsm/geometries/TextGeometry.js';
 import { Font } from 'three/examples/jsm/loaders/FontLoader.js';
-import CONFIG from "scripts/config";
-import Shape from "scripts/elements/shapes/shape/Shape";
-import { buttonGeometry } from "./mesh";
-import { getTextGeometry, textMaterial } from "scripts/elements/shapes/text/mesh";
+import { CONFIG } from "scripts/config";
+import { Shape } from "scripts/classes/shape/Shape";
+import { buttonGeometry } from "./Button.mesh";
+import { getTextGeometry, textMaterial } from "scripts/classes/text/Text.mesh";
 import { scene } from "scripts/scene";
 
 class Button extends Shape {

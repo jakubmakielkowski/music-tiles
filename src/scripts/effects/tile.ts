@@ -1,7 +1,7 @@
-import { cubes } from "scripts/elements/iterable/cubes";
-import { tiles } from "scripts/elements/iterable/tiles";
-import Cube from "scripts/elements/shapes/cube/Cube";
-import { hoveredTileMaterial } from "scripts/elements/shapes/tile/mesh";
+import { cubes } from "scripts/ui-elements/interactive/cubes";
+import { tiles } from "scripts/ui-elements/interactive/tiles";
+import Cube from "scripts/classes/cube/Cube";
+import { hoveredTileMaterial } from "scripts/classes/tile/Tile.mesh";
 import { encodeCubesToUrl } from "scripts/routing/helpers/cubes";
 import { scene } from "scripts/scene";
 import { findIntersectedShape } from "./helpers";
@@ -16,8 +16,7 @@ export const handleTileHover = (intersect: THREE.Intersection): void => {
 
 export const handleTileClick = (intersect: THREE.Intersection): void => {
   const intersectedTile = findIntersectedShape(tiles, intersect);
-
-  const { x, y } = intersectedTile.position;
+  const { x, y } = intersectedTile;
 
   const cube: Cube = cubes.get(y, x);
 

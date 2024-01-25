@@ -1,6 +1,5 @@
 import * as Tone from "tone";
-
-import CONFIG from "scripts/config";
+import { CONFIG } from "scripts/config";
 
 const synth: Tone.PolySynth = new Tone.PolySynth(Tone.Synth, {
   oscillator: {

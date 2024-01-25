@@ -1,6 +1,6 @@
-import Shape from "scripts/elements/shapes/shape/Shape";
+import { Shape } from "scripts/classes/shape/Shape";
 import { tileGeometry, tileMaterial } from "./Tile.mesh";
-import { getGridPosition } from "scripts/elements/shapes/shape/helpers/grid";
+import { getGridPosition } from "scripts/classes/shape/helpers/grid";
 
 class Tile extends Shape {
   constructor(y: number, x: number) {

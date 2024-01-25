@@ -1,8 +1,9 @@
-import { Grid } from "scripts/elements/iterable/Grid";
-import Shape from "scripts/elements/shapes/shape/Shape";
+import { Grid } from "scripts/classes/grid/Grid";
+import { Shape } from "scripts/classes/shape/Shape";
 
 export const findIntersectedShape = <T extends Shape>(shapes: Grid<T>, intersect: THREE.Intersection): T => {
   const { x, y } = intersect.object.position;
+
   const flattenedShapes: Array<T> = shapes.toArray();
 
   const intersectedShape: T = flattenedShapes.find((shape: T): boolean => {

@@ -1,4 +1,4 @@
-import CONFIG from "scripts/config";
+import { CONFIG } from "scripts/config";
 import { alphabet, getLastPair, pairs } from "./helpers/compression";
 import { generateCubesFromCoords } from "./helpers/cubes";
 

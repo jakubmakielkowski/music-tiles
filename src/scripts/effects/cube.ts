@@ -1,6 +1,6 @@
-import CONFIG from "scripts/config";
-import { cubes } from "scripts/elements/iterable/cubes";
-import Cube from "scripts/elements/shapes/cube/Cube";
+import { CONFIG } from "scripts/config";
+import { cubes } from "scripts/ui-elements/interactive/cubes";
+import Cube from "scripts/classes/cube/Cube";
 import { encodeCubesToUrl } from "scripts/routing/helpers/cubes";
 import { scene } from "scripts/scene";
 import { findIntersectedShape } from "./helpers";

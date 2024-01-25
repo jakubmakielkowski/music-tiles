@@ -1,14 +1,13 @@
 import * as THREE from "three";
-
-import CONFIG from "scripts/config";
+import { CONFIG } from "scripts/config";
 import { camera, renderer, scene } from "scripts/scene";
-import { tiles } from "scripts/elements/iterable/tiles";
-import { cubes } from "scripts/elements/iterable/cubes";
-import { buttons } from "scripts/elements/iterable/buttons";
+import { tiles } from "scripts/ui-elements/interactive/tiles";
+import { cubes } from "scripts/ui-elements/interactive/cubes";
+import { buttons } from "scripts/ui-elements/controls/buttons";
 import { pointCurrentTiles } from "./tiles";
 import { pointCurrentCubes } from "./cubes";
-import Cube from "scripts/elements/shapes/cube/Cube";
-import Button from "scripts/elements/shapes/button/Button";
+import Cube from "scripts/classes/cube/Cube";
+import Button from "scripts/classes/button/Button";
 
 // Updates sequence in time
 const sequenceClock: THREE.Clock = new THREE.Clock(true);

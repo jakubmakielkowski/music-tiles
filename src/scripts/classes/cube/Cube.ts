@@ -1,9 +1,9 @@
 import * as THREE from "three";
 
-import CONFIG from "scripts/config";
-import Shape from "scripts/elements/shapes/shape/Shape";
-import { cubeGeometry, cubeMaterial, pointedCubeMaterial } from "./mesh";
-import { getGridPosition } from "scripts/elements/shapes/shape/helpers/grid";
+import { CONFIG } from "scripts/config";
+import { Shape } from "scripts/classes/shape/Shape";
+import { cubeGeometry, cubeMaterial, pointedCubeMaterial } from "./Cube.mesh";
+import { getGridPosition } from "scripts/classes/shape/helpers/grid";
 
 class Cube extends Shape {
   constructor(y: number, x: number) {

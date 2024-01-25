@@ -1,6 +1,6 @@
 import * as THREE from "three";
 
-import CONFIG from "scripts/config";
+import { CONFIG } from "scripts/config";
 
 const tileGeometry: THREE.PlaneGeometry = new THREE.PlaneGeometry(CONFIG.TILE_LENGTH, CONFIG.TILE_LENGTH);
 

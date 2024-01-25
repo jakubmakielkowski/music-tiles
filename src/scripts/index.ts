@@ -1,10 +1,10 @@
 import { renderer, scene } from "./scene";
-import { tiles, generateTiles } from "./elements/iterable/tiles";
-import screen from "./elements/screen";
-import panelControls from "./elements/ui/panel/panelControls";
-import playButton from "./elements/ui/controls/playButton";
-import stopButton from "./elements/ui/controls/stopButton";
-import clearButton from "./elements/ui/controls/clearButton";
+import { tiles, generateTiles } from "./ui-elements/interactive/tiles";
+import { screen } from "./ui-elements/screen";
+import panelControls from "./ui-elements/static/panelControls";
+import { PlayButton } from "./ui-elements/controls/playButton";
+import { StopButton } from "./ui-elements/controls/stopButton";
+import { ClearButton } from "./ui-elements/controls/clearButton";
 import loop from "./animation/loop";
 import "./events/mouse";
 import "./sound/index";
@@ -16,9 +16,9 @@ generateTiles();
 scene.add(screen);
 scene.add(panelControls);
 
-scene.add(playButton);
-scene.add(stopButton);
-scene.add(clearButton);
+scene.add(PlayButton);
+scene.add(StopButton);
+scene.add(ClearButton);
 
 scene.add(...tiles.toArray());
 

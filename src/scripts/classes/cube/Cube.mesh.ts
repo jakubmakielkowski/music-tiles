@@ -1,18 +1,17 @@
 import * as THREE from "three";
+import { CONFIG } from "scripts/config";
 
-import CONFIG from "scripts/config";
-
-const cubeGeometry: THREE.BoxGeometry = new THREE.BoxGeometry(
+const cubeGeometry = new THREE.BoxGeometry(
   CONFIG.TILE_LENGTH,
   CONFIG.TILE_LENGTH,
   CONFIG.CUBE_HEIGHT
 );
 
-const cubeMaterial: THREE.MeshPhongMaterial = new THREE.MeshPhongMaterial({
+const cubeMaterial= new THREE.MeshPhongMaterial({
   color: CONFIG.CUBE_COLOR,
 });
 
-const pointedCubeMaterial: THREE.MeshPhongMaterial = new THREE.MeshPhongMaterial({
+const pointedCubeMaterial = new THREE.MeshPhongMaterial({
   color: CONFIG.POINTED_CUBE_COLOR,
 });
 

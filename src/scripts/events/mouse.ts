@@ -2,7 +2,6 @@ import * as THREE from "three";
 import * as _ from "lodash";
 
 import { camera, scene } from "scripts/scene";
-
 import { handleCubeClick } from "scripts/effects/cube";
 import { handleTileHover, handleTileClick } from "scripts/effects/tile";
 import { handleButtonClick } from "scripts/effects/button";

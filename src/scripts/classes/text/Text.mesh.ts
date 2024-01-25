@@ -1,6 +1,6 @@
 import * as THREE from "three";
-import { TextGeometry } from 'three/examples/jsm/geometries/TextGeometry.js';
-import { Font } from 'three/examples/jsm/loaders/FontLoader.js';
+import { TextGeometry } from 'three/examples/jsm/geometries/TextGeometry';
+import { Font } from 'three/examples/jsm/loaders/FontLoader';
 
 const getTextGeometry = (font: Font, text: string): TextGeometry => {
   return new TextGeometry(text, {
@@ -12,7 +12,7 @@ const getTextGeometry = (font: Font, text: string): TextGeometry => {
   });
 };
 
-const textMaterial: THREE.MeshPhongMaterial = new THREE.MeshPhongMaterial({
+const textMaterial = new THREE.MeshPhongMaterial({
   color: 0x555555,
 });
 

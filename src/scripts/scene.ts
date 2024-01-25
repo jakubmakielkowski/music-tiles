@@ -1,6 +1,6 @@
 import * as THREE from "three";
 
-import CONFIG from "scripts/config";
+import { CONFIG } from "scripts/config";
 
 const { innerWidth, innerHeight } = window;
 const aspectRatio: number = innerWidth / innerHeight;

@@ -1,4 +1,4 @@
-import CONFIG from "scripts/config";
+import { CONFIG } from "scripts/config";
 
 const alphabet: string = "0123456789abcdefghijklmnopqrstuvwxyz";
 

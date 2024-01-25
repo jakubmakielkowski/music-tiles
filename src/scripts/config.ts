@@ -1,4 +1,4 @@
-const CONFIG = {
+export const CONFIG = {
   BUTTON_ANIMATION_LENGTH: 0.4,
   BUTTON_CLEAR_COLOR: 0x222244,
   BUTTON_PLAY_COLOR: 0x224422,
@@ -19,5 +19,3 @@ const CONFIG = {
   TILE_OUTER_LENGTH: 10,
   URL_SEED_PARAM_NAME: "seed"
 };
-
-export default CONFIG;
