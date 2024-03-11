@@ -37,7 +37,5 @@ export const handleButtonClick = (intersect: THREE.Intersection): void => {
         scene.remove(cube);
       });
     });
-
-    cubes.clear();
   }
 };

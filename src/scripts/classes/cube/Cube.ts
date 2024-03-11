@@ -6,19 +6,27 @@ import { cubeGeometry, cubeMaterial, pointedCubeMaterial } from "./Cube.mesh";
 import { getGridPosition } from "scripts/classes/shape/helpers/grid";
 
 class Cube extends Shape {
+  public readonly y: number;
+  public readonly x: number;
+  public readonly mixer: THREE.AnimationMixer;
+  public active: boolean;
+  private animationShow: THREE.AnimationAction;
+  private animationHide: THREE.AnimationAction;
+
   constructor(y: number, x: number) {
     super(cubeGeometry, cubeMaterial);
 
-    this.tempType = "cube";
+    this.shapeName = "cube";
     this.y = y;
     this.x = x;
+    this.active = false;
 
     const [gridX, gridY] = getGridPosition(x, y);
-    this.position.set(gridX, gridY, CONFIG.CUBE_HEIGHT / 2);
+    this.position.set(gridX, gridY, -CONFIG.CUBE_HEIGHT / 2 - 0.1);
 
     this.mixer = new THREE.AnimationMixer(this);
 
-    const clips: Array<THREE.AnimationClip> = [
+    const clips = [
       new THREE.AnimationClip("clipShow", 3, [
         new THREE.VectorKeyframeTrack(
           ".position",
@@ -50,30 +58,22 @@ class Cube extends Shape {
     ];
 
     const [clipShow, clipHide] = clips;
-    
+
     this.animationShow = this.mixer.clipAction(clipShow);
     this.animationShow.setLoop(THREE.LoopOnce, 1);
 
     this.animationHide = this.mixer.clipAction(clipHide);
     this.animationHide.setLoop(THREE.LoopOnce, 1);
-
-    // Show newly created Cube
-    this.show();
   }
 
-  public readonly y: number;
-  public readonly x: number;
-  public readonly mixer: THREE.AnimationMixer;
-  private animationShow: THREE.AnimationAction;
-  private animationHide: THREE.AnimationAction;
-
-
   public show() {
+    this.active = true;
     this.animationHide.stop();
     this.animationShow.play();
   }
 
   public hide() {
+    this.active = false;
     this.animationShow.stop();
     this.animationHide.play();
   }

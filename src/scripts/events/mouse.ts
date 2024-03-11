@@ -16,7 +16,7 @@ const getIntersect = (event: MouseEvent, objectType: string): THREE.Intersection
   raycaster.setFromCamera(mouse, camera);
 
   const intersects = raycaster.intersectObjects(
-    scene.children.filter((el: any) => el.tempType === objectType),
+    scene.children.filter((el: any) => el.shapeName === objectType),
     true
   );
 
@@ -34,16 +34,18 @@ const onMouseClick = (event: MouseEvent): void => {
   const cubeIntersects = getIntersect(event, "cube");
   if (cubeIntersects.length) {
     const [cubeIntersect] = cubeIntersects;
+    console.log('cube i');
     handleCubeClick(cubeIntersect);
     return;
   }
 
-  const tileIntersects = getIntersect(event, "tile");
-  if (tileIntersects.length) {
-    const [tileIntersect] = tileIntersects;
-    handleTileClick(tileIntersect);
-    return;
-  }
+  // const tileIntersects = getIntersect(event, "tile");
+  // if (tileIntersects.length) {
+  //   const [tileIntersect] = tileIntersects;
+  //   console.log('tile i');
+  //   handleTileClick(tileIntersect);
+  //   return;
+  // }
 
   const buttonIntersects = getIntersect(event, "button");
   if (buttonIntersects.length) {

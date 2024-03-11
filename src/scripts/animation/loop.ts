@@ -10,7 +10,7 @@ import Cube from "scripts/classes/cube/Cube";
 import Button from "scripts/classes/button/Button";
 
 // Updates sequence in time
-const sequenceClock: THREE.Clock = new THREE.Clock(true);
+const sequenceClock = new THREE.Clock(true);
 
 // Updates shapes animations in time 
 const animationClock: THREE.Clock = new THREE.Clock(true);
@@ -68,9 +68,9 @@ const loop = (): void => {
     }
   }
   
-  const cbs:Array<Cube> = cubes.toArray();
-  cbs.forEach((cube: Cube) => {
-    cube && cube.mixer.update(animationDelta);
+  const cubesArray:Array<Cube> = cubes.toArray();
+  cubesArray.forEach((cube: Cube) => {
+    cube?.mixer.update(animationDelta);
   });
   
   buttons.forEach((button: Button) => {

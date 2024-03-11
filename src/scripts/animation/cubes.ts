@@ -1,38 +1,32 @@
 import { CONFIG } from "scripts/config";
-
 import { Grid } from "scripts/classes/grid/Grid";
 import Cube, { cubeMaterial, pointedCubeMaterial } from "scripts/classes/cube/Cube";
 import { synth, sounds } from "scripts/sound/index";
 
 const pointCurrentCubes = (cubes: Grid<Cube>, column: number): void => {
-  let previousColumn: number = CONFIG.SCREEN_WIDTH - 1;
-
-  if (column) {
-    previousColumn = column - 1;
-  }
-
   const cubesIndexes: Array<number> = new Array();
 
   // Add color to current column
-  const cbs: Array<Array<Cube>> = cubes.to2Array();
-  cbs[column].forEach((cube: Cube, i: number) => {
+  const cubes2Array: Array<Array<Cube>> = cubes.to2Array();
+  cubes2Array[column].forEach((cube, index) => {
     if (cube) {
       cube.material = pointedCubeMaterial;
 
-      if (cube.x || cube.x === 0) {
-        cubesIndexes.push(i);
+      if (cube.x ?? 0) {
+        cubesIndexes.push(index);
       }
     }
   });
 
-  synth.volume.value = -8;
-  synth.triggerAttackRelease(
-    sounds.filter((el, i) => cubesIndexes.includes(i)),
-    "8n"
-  );
+  // synth.volume.value = -8;
+  // synth.triggerAttackRelease(
+  //   sounds.filter((x, index) => cubesIndexes.includes(index)),
+  //   "8n"
+  // );
 
   // Remove color from previous column
-  cbs[previousColumn].forEach((cube: Cube) => {
+  const previousColumn = column ? column - 1 : CONFIG.SCREEN_WIDTH - 1;
+  cubes2Array[previousColumn].forEach((cube) => {
     if (cube) {
       cube.material = cubeMaterial;
     }
